@@ -41,7 +41,22 @@
       "@vue/prettier",
       "@vue/typescript"
     ],
-    "rules": {}
+    "rules": {
+      "vue/attribute-hyphenation": [
+        "error",
+        "always"
+      ],
+      "vue/html-end-tags": "error",
+      "vue/html-indent": [
+        "error",
+        4
+      ],
+      "vue/require-prop-types": "error",
+      "vue/html-quotes": [
+        "error",
+        "double"
+      ]
+    }
   },
   "postcss": {
     "plugins": {
