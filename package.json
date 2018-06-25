@@ -43,10 +43,6 @@
       "@vue/typescript"
     ],
     "rules": {
-      "vue/attribute-hyphenation": [
-        "error",
-        "always"
-      ],
       "vue/html-end-tags": "error",
       "vue/html-indent": [
         "error",
