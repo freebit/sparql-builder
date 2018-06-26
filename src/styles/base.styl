@@ -1,0 +1,138 @@
+adaptation($screens)
+
+html
+    font-family sans-serif
+    box-sizing border-box
+
+html
+body
+    min-height 100%
+
+body
+    background-color $white
+    font-size 16px
+    overflow-x hidden
+    overflow-y scroll
+
+    text-rendering optimizeLegibility
+    -moz-osx-font-smoothing grayscale
+    -webkit-font-smoothing antialiased
+
+    min-height 100vh
+
+
+.view
+    position relative
+
+.inner-container
+    padding-x 10px
+    
+    @media desktop-md-and-up
+        max-width $container-width
+        margin-x auto
+        padding-x 0
+
+    @media (min-width: 1400px)
+        max-width $container-width-lg
+
+input
+textarea
+select
+button
+    font-family inherit
+
+a
+    text-decoration none
+    -webkit-text-decoration-skip object
+
+// ::selection
+//     background-color $black-pre
+//     color $white
+
+
+
+.control
+    position relative
+    display flex
+    flex-grow 1
+    flex-shrink 0
+    min-width $base-row-height
+    background-color rgba($black, .3)
+
+    input
+    button
+        margin 0
+        padding 0
+
+    &:not(:last-child)
+        border-right 1px solid $white
+    
+    .skin
+        position absolute
+        display flex
+        size(100%)
+        top 0
+        left 0
+        background-color transparent
+        pointer-events none
+        justify-content center
+        transition background-color .8s $ease-out-quart
+
+        &::before
+            display block
+            content ''
+            size(5px)
+            // border-top 3px solid $success
+            // border-bottom 3px solid
+            border .5px solid rgba($black, .3)
+            border-radius 50%
+            background-color $success
+            align-self center
+            transition transform .8s $ease-out-quart
+
+
+.control-checkbox
+
+    input[type="checkbox"]
+        display block
+        size(100%)
+        opacity 0
+        cursor pointer
+
+        &[disabled] + .skin
+            &::before
+                size(3px)
+                background-color rgba($black, .1)
+
+        &:checked + .skin
+            background-color rgba($black, .1)
+            transition background-color .5s $ease-out-quart
+
+            &::before
+                transform scale(3.8)
+                // border-width .3px
+                transition transform .5s $ease-out-quart
+
+.control-button
+    justify-content center
+    align-items center
+    overflow hidden
+    
+    button
+        display flex
+        justify-content center
+        align-items center
+        position relative
+        clear-button-defaults()
+        size(100%)
+        font-size 1rem
+        background-color transparent
+        transition background-color .5s $ease-out-quart .2s, transform .5s $ease-out-quart
+
+        &[disabled]
+            color rgba($black, .3)
+
+        &:active
+            background-color rgba($black, .1)
+            transform scale(2.1)
+            transition background-color .5s $ease-out-quart, transform .5s $ease-out-quart

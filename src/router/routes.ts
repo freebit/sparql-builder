@@ -7,5 +7,10 @@ export default [
     path: "/",
     name: "home",
     component: loadView("Builder")
-  }
+  },
+  {
+    path: '*',
+    name: 'notfound',
+    component: () => import('@/pages/404.vue')
+}
 ];

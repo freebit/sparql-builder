@@ -1,0 +1,19 @@
+adaptation($screens)
+    $resolutionMax = null
+
+    for $name, $resolution in $screens
+        if $resolutionMax
+            $screens[$name] = {
+                min: $resolution,
+                max: $resolutionMax
+            }
+            define($name + '-and-down', "(max-width " + $resolutionMax + ")", true)
+            define($name, "(min-width " + $resolution + ")" + "and (max-width " + $resolutionMax + ")", true)
+
+        else
+            $screens[$name] = {
+                min: $resolution
+            }
+        define($name + '-and-up', "(min-width " + $resolution + ")", true)
+
+        $resolutionMax = $resolution - 1px
