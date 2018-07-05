@@ -1,7 +1,7 @@
 <template>
   <div class="input__field">
     <input type="text" v-bind:value="value" @input="$emit('input', $event.target.value)" ref="field">
-    <div class="input__field--controls">
+    <div v-if="!simple" class="input__field--controls">
       <div class="control control-checkbox">
         <input type="checkbox" placeholder="dsfgsd" @change="onChange($event)" :disabled="!value.length" ref="checkbox">
         <div class="skin"></div>
@@ -19,7 +19,11 @@ import { Stream } from "stream";
 export default Vue.extend({
   props: {
     value: String,
-    placeHolder: String
+    placeHolder: String,
+    simple: {
+      type: Boolean,
+      default: false
+    }
   },
   watch: {
     value(val) {
@@ -31,11 +35,7 @@ export default Vue.extend({
   methods: {
     onChange(evt: any) {
       this.$emit("change", { checked: evt.target.checked, value: this.value });
-      if (evt.target.checked) {
-        (this.$refs["field"] as HTMLInputElement).readOnly = true;
-      } else {
-        (this.$refs["field"] as HTMLInputElement).readOnly = false;
-      }
+      (this.$refs["field"] as HTMLInputElement).readOnly = evt.target.checked;
     },
     addAction() {
       if (this.value.length) {

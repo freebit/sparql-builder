@@ -1,4 +1,4 @@
-import RdfTriple from "./RdfTriple";
+import RdfTriple from "@/types/RdfTriple";
 const state = {
   triples: [],
   keyWords: {

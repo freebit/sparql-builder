@@ -9,8 +9,13 @@ export default [
     component: loadView("Builder")
   },
   {
-    path: '*',
-    name: 'notfound',
-    component: () => import('@/pages/404.vue')
-}
+    path: "/tree",
+    name: "tree",
+    component: loadView("Tree")
+  },
+  {
+    path: "*",
+    name: "notfound",
+    component: () => import("@/pages/404.vue")
+  }
 ];
