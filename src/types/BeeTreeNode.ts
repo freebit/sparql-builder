@@ -10,6 +10,6 @@ export default class BeeTreeNode {
   }
 
   public compareTo(node: BeeTreeNode): number {
-    return this.root > node.root ? 1 : this.root < node.root ? -1 : 0;
+    return +this.root > +node.root ? 1 : +this.root < +node.root ? -1 : 0;
   }
 }

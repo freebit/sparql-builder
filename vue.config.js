@@ -1,14 +1,13 @@
 module.exports = {
   css: {
-    sourceMap: true,
-    modules: true
+    extract: false
   },
 
-  baseUrl: '/',
-  outputDir: 'dist',
-  assetsDir: undefined,
-  runtimeCompiler: undefined,
-  productionSourceMap: undefined,
-  parallel: undefined,
-  lintOnSave: undefined
-}
+  baseUrl: "",
+  outputDir: "dist",
+  assetsDir: "assets",
+  runtimeCompiler: true,
+  productionSourceMap: false,
+  parallel: true,
+  lintOnSave: true
+};

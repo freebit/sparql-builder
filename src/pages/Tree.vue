@@ -1,17 +1,17 @@
 <template>
-  <div class="tree__block">
-    <div class="inner-container box">
+  <div class='tree__block'>
+    <div class='inner-container box'>
       <h1>Tree builder</h1>
-      <div class="controls">
-        <InputFieldVue v-model.number="newValue" :simple="true" placeholder="Число"></InputFieldVue>
-        <button @click="addNode">Добавить узел</button>
+      <div class='controls'>
+        <InputFieldVue v-model.trim='newValue' mode='simple' placeholder='Число'></InputFieldVue>
+        <button @click='addNode'>Добавить узел</button>
       </div>
     </div>
-    <div class="tree__block">
-      <div class="inner-container">
-        <div class="tree">
-          <transition name="fade">
-            <BeeTreeNodeVue v-if="treeData" :node="treeData"></BeeTreeNodeVue>
+    <div class='tree__block'>
+      <div class='inner-container'>
+        <div class='tree'>
+          <transition name='fade'>
+            <BeeTreeNodeVue v-if='treeData' :node='treeData'></BeeTreeNodeVue>
           </transition>
         </div>
       </div>

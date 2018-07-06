@@ -6,7 +6,7 @@
     "start": "npm run serve",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
+    "lint": "vue-cli-service lint --fix",
     "test:unit": "vue-cli-service test:unit --watch"
   },
   "dependencies": {
@@ -51,7 +51,7 @@
       "vue/require-prop-types": "error",
       "vue/html-quotes": [
         "error",
-        "double"
+        "single"
       ]
     }
   },

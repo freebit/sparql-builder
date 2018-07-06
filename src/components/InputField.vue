@@ -1,13 +1,13 @@
 <template>
-  <div class="input__field">
-    <input type="text" v-bind="$attrs" v-bind:value="value" @input="$emit('input', $event.target.value)" ref="field">
-    <div v-if="!simple" class="input__field--controls">
-      <div class="control control-checkbox">
-        <input type="checkbox" @change="onChange($event)" :disabled="!value.length" ref="checkbox">
-        <div class="skin"></div>
+  <div class='input__field'>
+    <input type='text' v-bind='$attrs' :value='value' @input='$emit("input", $event.target.value)' ref='field'>
+    <div v-if='mode === `full`' class='input__field--controls'>
+      <div class='control control-checkbox'>
+        <input type='checkbox' @change='onChange($event)' :disabled='!value.length' ref='checkbox'>
+        <div class='skin'></div>
       </div>
-      <div class="control control-button">
-        <button @click="addAction" :disabled="!value.length">+</button>
+      <div class='control control-button'>
+        <button @click='addAction' :disabled='!value.length'>+</button>
       </div>
     </div>
   </div>
@@ -20,10 +20,13 @@ export default Vue.extend({
   name: "InputField",
   inheritAttrs: false,
   props: {
-    value: String,
-    simple: {
-      type: Boolean,
-      default: false
+    value: {
+      type: String,
+      default: ""
+    },
+    mode: {
+      type: String,
+      default: "full"
     }
   },
   watch: {

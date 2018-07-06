@@ -1,24 +1,24 @@
 <template>
-  <div class="home">
-    <div class="inner-container">
+  <div class='home'>
+    <div class='inner-container'>
       <h1>sparql builder</h1>
     </div>
-    <div class="builder__block inner-container">
-      <div class="builder__block--list">
-        <transition-group name="fade">
+    <div class='builder__block inner-container'>
+      <div class='builder__block--list'>
+        <transition-group name='fade'>
           <TripleVue
-            v-for="(triple, index) in triples"
-            :key="index"
-            :triple="triple"
-            :index="index"
+            v-for='(triple, index) in triples'
+            :key='index'
+            :triple='triple'
+            :index='index'
           ></TripleVue>
         </transition-group>
-        <button class="builder__block--button" @click="addTriple()">Add triple</button>
+        <button class='builder__block--button' @click='addTriple()'>Add triple</button>
       </div>
-      <div class="builder__block--result">
-        <textarea v-model="result" readonly></textarea>
+      <div class='builder__block--result'>
+        <textarea v-model='result' readonly></textarea>
         <br>
-        <button class="builder__block--button" @click="generateQuery" :disabled="!triples.length">Build</button>
+        <button class='builder__block--button' @click='generateQuery' :disabled='!triples.length'>Build</button>
       </div>
     </div>
   </div>
@@ -43,7 +43,9 @@ export default Vue.extend({
   },
 
   mounted() {
-    this.addTriple();
+    if (this.triples.length === 0) {
+      this.addTriple();
+    }
   }
 });
 </script>

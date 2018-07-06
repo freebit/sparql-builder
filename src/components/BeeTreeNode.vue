@@ -1,14 +1,14 @@
 <template>
-  <div class="node-tree">
-    <div class="root">
-      <div class="node_head">{{ node.root }}</div>
+  <div class='node-tree'>
+    <div class='root'>
+      <div class='node_head'>{{ node.root }}</div>
     </div>
-    <div class="leaves">
-      <transition name="fade">
-        <node v-if="node.leftLeaf" :node="node.leftLeaf" class="leaf leaf-left"></node>
+    <div class='leaves'>
+      <transition name='fade'>
+        <node v-if='node.leftLeaf' :node='node.leftLeaf' class='leaf leaf-left'></node>
       </transition>
-      <transition name="fade">
-        <node v-if="node.rightLeaf" :node="node.rightLeaf" class="leaf leaf-right"></node>
+      <transition name='fade'>
+        <node v-if='node.rightLeaf' :node='node.rightLeaf' class='leaf leaf-right'></node>
       </transition>
     </div>
   </div>
