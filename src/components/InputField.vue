@@ -1,9 +1,9 @@
 <template>
   <div class="input__field">
-    <input type="text" v-bind:value="value" @input="$emit('input', $event.target.value)" ref="field">
+    <input type="text" v-bind="$attrs" v-bind:value="value" @input="$emit('input', $event.target.value)" ref="field">
     <div v-if="!simple" class="input__field--controls">
       <div class="control control-checkbox">
-        <input type="checkbox" placeholder="dsfgsd" @change="onChange($event)" :disabled="!value.length" ref="checkbox">
+        <input type="checkbox" @change="onChange($event)" :disabled="!value.length" ref="checkbox">
         <div class="skin"></div>
       </div>
       <div class="control control-button">
@@ -17,9 +17,10 @@
 import Vue from "vue";
 import { Stream } from "stream";
 export default Vue.extend({
+  name: "InputField",
+  inheritAttrs: false,
   props: {
     value: String,
-    placeHolder: String,
     simple: {
       type: Boolean,
       default: false
@@ -38,7 +39,7 @@ export default Vue.extend({
       (this.$refs["field"] as HTMLInputElement).readOnly = evt.target.checked;
     },
     addAction() {
-      if (this.value.length) {
+      if (this.value && this.value.length) {
         this.$emit("click", this.value);
       }
     }

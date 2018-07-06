@@ -59,14 +59,42 @@ export default Vue.extend({
     position relative
     justify-content center
     align-items center
-    size(100px)
+    size(70px)
     border-radius 50%
     background-color red
     color #fff
     font-size 24px
 
+    // &:after
+    //     display block
+    //     position absolute
+    //     content ""
+    //     width 98px
+    //     height 2px
+    //     left 100%
+    //     top 40%
+
     .leaf-left > .root &
       background-color blue
+      &:after
+        background-color blue
+        transform-origin left
+        transform rotate(-25deg)
     .leaf-right > .root &
       background-color green
+      &:after
+        left auto
+        right 100%
+        background-color green
+        transform-origin right
+        transform rotate(25deg)
+  
+  .tree > .node-tree > .root .node_head
+    border 2px solid $black
+    size(100px)
+    background-color orange
+    color $black
+
+    &:after
+      display none
 </style>

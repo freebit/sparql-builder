@@ -3,7 +3,7 @@
     <div class="inner-container box">
       <h1>Tree builder</h1>
       <div class="controls">
-        <InputFieldVue v-model.number="newValue" :simple="true"></InputFieldVue>
+        <InputFieldVue v-model.number="newValue" :simple="true" placeholder="Число"></InputFieldVue>
         <button @click="addNode">Добавить узел</button>
       </div>
     </div>
@@ -34,7 +34,7 @@ export default Vue.extend({
   data() {
     return {
       tree: new BeeTree(null),
-      newValue: 100
+      newValue: ""
       // treeData: {
       //   root: 10,
       //   leftLeaf: {
@@ -55,7 +55,7 @@ export default Vue.extend({
     addNode() {
       const newNode = new BeeTreeNode(this.newValue);
       this.tree.add(newNode);
-      this.newValue = 0;
+      this.newValue = "0";
       // console.log("tree :", this.tree);
     }
   },

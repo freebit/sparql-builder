@@ -1,9 +1,9 @@
 export default class BeeTreeNode {
-  public root: number;
+  public root: number | string;
   public leftLeaf: BeeTreeNode | null;
   public rightLeaf: BeeTreeNode | null;
 
-  constructor(value: number) {
+  constructor(value: number | string) {
     this.root = value;
     this.leftLeaf = null;
     this.rightLeaf = null;
