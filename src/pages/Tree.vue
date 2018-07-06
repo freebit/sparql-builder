@@ -3,7 +3,7 @@
     <div class='inner-container box'>
       <h1>Tree builder</h1>
       <div class='controls'>
-        <InputFieldVue v-model.trim='newValue' mode='simple' placeholder='Число'></InputFieldVue>
+        <InputFieldVue v-model.trim='newValue' mode='simple' placeholder='Node value'></InputFieldVue>
         <button @click='addNode'>Добавить узел</button>
       </div>
     </div>

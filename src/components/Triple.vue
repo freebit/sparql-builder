@@ -2,7 +2,7 @@
   <div class='triple__block'>
     <div class='triple__block--items'>
       <InputFieldVue v-model.trim='triple._subject' @click='addTriple' @change='selectField' placeholder='subject'></InputFieldVue>
-      <InputFieldVue v-model.trim='triple._predicat' @click='addTriple' @change='selectField' placeholder='predicat'></InputFieldVue>
+      <InputFieldVue v-model.trim='triple._predicat' @click='addTriple' @change='selectField' placeholder='predicate'></InputFieldVue>
       <InputFieldVue v-model.trim='triple._object' @click='addTriple' @change='selectField' placeholder='object'></InputFieldVue>
     </div>
     <div class='control control-button'>
