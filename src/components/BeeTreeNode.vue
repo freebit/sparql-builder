@@ -1,7 +1,7 @@
 <template>
   <div class='node-tree'>
     <div class='root'>
-      <div class='node_head'>{{ node.root }}</div>
+      <div class='node_head'>{{ node.root }} <ins class='remover' @click.self='onNodeRemove(node)'>&times;</ins></div>
     </div>
     <div class='leaves'>
       <transition name='fade'>
@@ -21,6 +21,11 @@ export default Vue.extend({
   name: "node",
   props: {
     node: BeeTreeNode
+  },
+  methods: {
+    onNodeRemove(node: BeeTreeNode) {
+      this.$bus.$emit("remove-node", node);
+    }
   }
 });
 </script>
@@ -36,6 +41,8 @@ export default Vue.extend({
     display flex
     width 100%
     justify-content center
+
+    
     
   .leaves
     position relative
@@ -48,11 +55,36 @@ export default Vue.extend({
     display flex
     flex-basis 50%
 
+    .root
+      &:before
+        display block
+        position absolute
+        content ""
+        width 50%
+        height 1px
+        background-color $black
+
+
     &-left
       position relative
+
+      > .root
+          &:before
+            right 0%
+            top 0%
+            transform-origin right
+            transform rotate(-10deg)
+    
     &-right
       position relative
       margin-left auto
+
+      > .root
+          &:before
+            left 0
+            top 0
+            transform-origin left
+            transform rotate(10deg)
 
   .node_head
     display flex
@@ -63,16 +95,33 @@ export default Vue.extend({
     border-radius 50%
     background-color red
     color #fff
-    font-size 24px
+    font-size 1rem
 
-    // &:after
-    //     display block
-    //     position absolute
-    //     content ""
-    //     width 98px
-    //     height 2px
-    //     left 100%
-    //     top 40%
+    .remover
+      position absolute
+      display flex
+      justify-content center
+      align-items center
+      top 0
+      right 0
+      width 20%
+      height 20%
+      border-radius 50%
+      background-color red
+      cursor pointer
+      font-size .8rem
+      line-height 1
+      color $white
+      opacity 0
+      pointer-events none
+      transition opacity .3s ease
+
+    &:hover
+      .remover
+        opacity 1
+        pointer-events auto
+        transition opacity .3s ease
+
 
     .leaf-left > .root &
       background-color blue
@@ -94,6 +143,7 @@ export default Vue.extend({
     size(100px)
     background-color orange
     color $black
+    font-size 1.5rem
 
     &:after
       display none

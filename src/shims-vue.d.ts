@@ -6,3 +6,4 @@ declare module "*.vue" {
 interface Window {
   prerenderReady: any;
 }
+

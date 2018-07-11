@@ -3,15 +3,16 @@
     <div class='inner-container box'>
       <h1>Tree builder</h1>
       <div class='controls'>
+        <span class='counter'>{{ getNodeCount() }}</span>
         <InputFieldVue v-model.trim='newValue' mode='simple' placeholder='Node value'></InputFieldVue>
-        <button @click='addNode'>Добавить узел</button>
+        <button @click='addNode(newValue)' :disabled='!isValidNodeValue'>Добавить узел</button>
       </div>
     </div>
     <div class='tree__block'>
       <div class='inner-container'>
         <div class='tree'>
           <transition name='fade'>
-            <BeeTreeNodeVue v-if='treeData' :node='treeData'></BeeTreeNodeVue>
+            <BeeTreeNodeVue v-if='tree._head' :node='tree._head'></BeeTreeNodeVue>
           </transition>
         </div>
       </div>
@@ -25,6 +26,7 @@ import BeeTree from "@/types/BeeTree";
 import BeeTreeNode from "@/types/BeeTreeNode";
 import BeeTreeNodeVue from "@/components/BeeTreeNode.vue";
 import InputFieldVue from "@/components/InputField.vue";
+import { mapState, mapActions, mapGetters } from "vuex";
 export default Vue.extend({
   name: "Tree",
   components: {
@@ -33,36 +35,26 @@ export default Vue.extend({
   },
   data() {
     return {
-      tree: new BeeTree(null),
       newValue: ""
-      // treeData: {
-      //   root: 10,
-      //   leftLeaf: {
-      //     root: 7
-      //   },
-      //   rightLeaf: {
-      //     root: 12
-      //   }
-      // }
     };
   },
   computed: {
-    treeData(): any {
-      return this.tree._head;
+    ...mapState("treeModule", ["tree"]),
+    ...mapGetters("treeModule", ["getNodeCount"]),
+    isValidNodeValue(): boolean {
+      return !Number.isNaN(parseInt(this.newValue, 10));
     }
   },
   methods: {
-    addNode() {
-      const newNode = new BeeTreeNode(this.newValue);
-      this.tree.add(newNode);
-      this.newValue = "0";
-      // console.log("tree :", this.tree);
-    }
+    ...mapActions("treeModule", ["addNode", "removeNode"])
   },
 
-  mounted() {
-    // const startNode = new BeeTreeNode(3);
-    // this.tree = new BeeTree(startNode);
+  created() {
+    this.$bus.$on("remove-node", this.removeNode);
+  },
+
+  beforeDestroy() {
+    this.$bus.$off("remove-node", this.removeNode);
   }
 });
 </script>
@@ -87,6 +79,10 @@ export default Vue.extend({
     display flex
     max-height 44px
     align-items center
+
+    .counter
+      position relative
+      margin-right 1rem
 
     button
       clear-button-defaults()
